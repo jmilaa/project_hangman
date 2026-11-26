@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hangman | Save the Bone!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+   
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <script src="js/main.js" defer></script>
+
+</head>
+
+<body>
+
+    <header class="page-header">
+        <h1>Save the Bone!</h1>
+        <p>Guess the word before the bone breaks.</p>
+
+    </header>
+
+    <main>
+        <div class="game-container">
+            <section class="visual-section">
+
+                <img
+                    id="dog-image"
+                    src="images/bone-0.png"
+                    alt="Golden doodle holding unbroken bone">
+            </section>
+
+            <!--game info-->
+            <section class="game-info">
+
+                <h2>Guess the Word</h2>
+
+                <!--word hint-->
+                <p class="hint">
+                    <strong>Hint:</strong>
+                    <span id="hint-text">Loading hint...</span>
+                </p>
+
+                <!--game word-->
+                <div id="word-display" class="word-display">
+                    _ _ _ _ _
+                </div>
+
+                <!--lives and game result-->
+                <div class="game-status">
+                    <p id="lives-remaining">
+                        Lives Remaining:
+                        <span id="lives-count">6</span>
+                    </p>
+
+                    <!--hidden until game is won/lost-->
+                    <div id="game-result" hidden>
+                        <p id="result-message"></p>
+
+                        <button
+                            id="play-again-button"
+                            type="button">
+                            Play Again
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--keyboard section-->
+            <section class="keyboard-section">
+
+                <h2>Select a letter</h2>
+
+                <div id="keyboard" class="keyboard">
+
+                    <button type="button" data-letter="A">A</button>
+                    <button type="button" data-letter="B">B</button>
+                    <button type="button" data-letter="C">C</button>
+                    <button type="button" data-letter="D">D</button>
+                    <button type="button" data-letter="E">E</button>
+                    <button type="button" data-letter="F">F</button>
+                    <button type="button" data-letter="G">G</button>
+                    <button type="button" data-letter="H">H</button>
+                    <button type="button" data-letter="I">I</button>
+                    <button type="button" data-letter="J">J</button>
+                    <button type="button" data-letter="K">K</button>
+                    <button type="button" data-letter="L">L</button>
+                    <button type="button" data-letter="M">M</button>
+                    <button type="button" data-letter="N">N</button>
+                    <button type="button" data-letter="O">O</button>
+                    <button type="button" data-letter="P">P</button>
+                    <button type="button" data-letter="Q">Q</button>
+                    <button type="button" data-letter="R">R</button>
+                    <button type="button" data-letter="S">S</button>
+                    <button type="button" data-letter="T">T</button>
+                    <button type="button" data-letter="U">U</button>
+                    <button type="button" data-letter="V">V</button>
+                    <button type="button" data-letter="W">W</button>
+                    <button type="button" data-letter="X">X</button>
+                    <button type="button" data-letter="Y">Y</button>
+                    <button type="button" data-letter="Z">Z</button>
+
+                </div>
+
+            </section>
+
+            <!--game instructions-->
+            <section class="game-instructions">
+                <h2>How to Play</h2>
+                <p>
+                    Select letters to reveal the mystery word.
+                    You have six lives to save the bone!
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!--footer -->
+    <footer class="site-footer">
+        <p>COMP2132 | Final Project</p>
+    </footer>
+    
+</body>
+</html>

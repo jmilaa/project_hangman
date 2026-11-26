@@ -1,0 +1,416 @@
+
+//theme colors used
+$pink-light: #F8D7E3;
+$pink: #F4AFC5;
+$pink-dark: #E68EAD;
+$cream: #FFF9F0;
+$white: #FFFFFF;
+$grey: #8B8B93;
+$grey-light: #E8E8EA;
+$black: #1D1D1F;
+
+/*SCSS mixins*/
+//apply consistent styles to game buttons
+@mixin button-style($background-color) {
+    background-color: $background-color;
+    color: $black;
+    border: 2px solid $white;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+/*general styles - mobile first*/
+//apply border-box sizing for predictable layouts
+* {
+    box-sizing: border-box;
+}
+
+//set page background, font and flexbox layout
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: $cream;
+    color: $black;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+//remove default top margins and keep text black
+h1, h2, p {
+    margin-top: 0;
+    color: $black;
+}
+
+//expand main area and center the game container
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+/*page header*/
+//center game title above the container
+.page-header {
+    text-align: center;
+    padding: 25px 15px 20px;
+
+    //make the title responsive without media queries.
+    h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    //style the subtitle beneath the title.
+    p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+}
+
+/*game container*/
+//stack all game sections vertically using flexbox
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 850px;
+    background-color: $white;
+    border: 3px solid $pink-light;
+    border-radius: 18px;
+    padding: 20px 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/*visual section*/
+//center dog image inside the game
+.visual-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    //keep illustration proportional and responsive
+    #dog-image {
+        display: block;
+        width: 100%;
+        max-width: 230px;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/*game information*/
+//stack hint, mystery word and lives vertically
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    text-align: center;
+}
+
+//keep section headings consistent
+.game-info h2,
+.keyboard-section h2,
+.game-instructions h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+//display the hint inside a cream-coloured panel
+.hint {
+    background-color: $cream;
+    padding: 10px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+//display the mystery word with space between letters
+.word-display {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+}
+
+//center the lives counter and result message
+.game-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    width: 100%;
+
+    //style the lives pill with smaller text on mobile
+    #lives-remaining {
+        background-color: $pink-light;
+        border-radius: 30px;
+        padding: 12px 20px;
+        font-size: 0.89rem;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+
+    //emphasize the number of remaining lives
+     #lives-count {
+        font-weight: 700;
+    }
+
+    //style the win or loss message
+    #result-message {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    //style Play Again using the SCSS button mixin
+    #play-again-button {
+        @include button-style($pink);
+
+        border-color: $pink-dark;
+        border-radius: 12px;
+        padding: 12px 30px;
+        font-size: 1rem;
+        font-weight: 600;
+
+        //darken button when hovered
+        &:hover {
+            background-color: $pink-dark;
+        }
+
+        //show a visible focus outline for keyboard navigation
+        &:focus-visible {
+            outline: 3px solid $black;
+            outline-offset: 2px;
+        }
+    }
+}
+
+//ensure the results remain hidden before the game ends
+#game-result[hidden] {
+    display: none;
+}
+
+/*keyboard*/
+//stack the heading above keyboard
+.keyboard-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+}
+
+//keep keyboard at nine columns and three rows
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 4px;
+    width: 100%;
+    max-width: 650px;
+
+    //set grey fill, white borders and mobile button sizes
+    button {
+        @include button-style($grey);
+
+        min-width: 0;
+        min-height: 36px;
+        padding: 0;
+        font-size: 0.75rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+        //change available letters to baby pink on hover
+        &:hover:not(:disabled) {
+            background-color: $pink;
+            transform: translateY(-2px);
+        }
+
+        //highlight letter buttons when focused by keyboard
+        &:focus-visible {
+            outline: 3px solid $pink-dark;
+            outline-offset: 2px;
+        }
+
+        //show selected letters in pink and prevent interaction
+        &:disabled {
+            background-color: $pink;
+            color: $black;
+            opacity: 0.75;
+            cursor: not-allowed;
+            transform: none;
+        }
+    }
+}
+
+/*game instructions*/
+//separate game instructions from the keyboard
+.game-instructions {
+    width: 100%;
+    border-top: 1px solid $grey-light;
+    padding-top: 20px;
+    text-align: center;
+
+    //add space below the instructions heading
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    //keep instructions readable on mobile
+    p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+}
+
+/*site footer*/
+//center the site footer below the game
+.site-footer {
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 15px;
+
+    //keep the course information small.
+    p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+}
+
+/*media qurey - table >600px*/
+@media (min-width: 600px) {
+
+    //increase spacing around the page header
+    .page-header {
+        padding: 35px 20px 25px;
+
+        p {
+            font-size: 1rem;
+        }
+    }
+
+    //increase the page's horizontal margins
+    main {
+        padding: 0 20px;
+    }
+
+    //increase padding and spacing inside the game
+    .game-container {
+        padding: 24px 18px;
+        gap: 20px;
+        border-radius: 24px;
+    }
+
+     //increase the dog illustration size on tablets
+    .visual-section {
+        #dog-image {
+            max-width: 250px;
+        }
+    }
+
+    //increase section heading sizes
+    .game-info h2,
+    .keyboard-section h2,
+    .game-instructions h2 {
+        font-size: 1.25rem;
+    }
+
+    //increase hint text and padding
+    .hint {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    //increase word font size and letter spacing
+    .word-display {
+        font-size: 1.85rem;
+        letter-spacing: 6px;
+    }
+
+    //maintain nine keyboard columns with larger buttons
+    .keyboard {
+        gap: 6px;
+
+        button {
+            min-height: 44px;
+            font-size: 0.9rem;
+        }
+    }
+
+    //increase instruction text size
+    .game-instructions p {
+        font-size: 0.9rem;
+    }
+
+     //increase the lives pill size for tablets
+    .game-status {
+        #lives-remaining {
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+
+}
+
+/*media query - desktop >900px */
+@media (min-width: 900px) {
+
+    //increase spacing between game sections
+    .game-container {
+        padding: 30px;
+        gap: 24px;
+    }
+
+    //allow a larger dog illustration on desktop screens
+    .visual-section {
+        #dog-image {
+            max-width: 375px;
+        }
+    }
+
+    //increase mystery word size
+    .word-display {
+        font-size: 2.25rem;
+        letter-spacing: 7px;
+    }
+
+    //maintain three rows with desktop-sized keys
+    .keyboard {
+        gap: 8px;
+
+        button {
+            min-height: 48px;
+            font-size: 1rem;
+        }
+    }
+
+    //increase the lives pill text for desktop screens
+    .game-status {
+        #lives-remaining {
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+    }
+
+}
+

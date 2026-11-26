@@ -1,0 +1,312 @@
+/*SCSS mixins*/
+/*general styles - mobile first*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #FFF9F0;
+  color: #1D1D1F;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, p {
+  margin-top: 0;
+  color: #1D1D1F;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/*page header*/
+.page-header {
+  text-align: center;
+  padding: 25px 15px 20px;
+}
+.page-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.page-header p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/*game container*/
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 850px;
+  background-color: #FFFFFF;
+  border: 3px solid #F8D7E3;
+  border-radius: 18px;
+  padding: 20px 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/*visual section*/
+.visual-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.visual-section #dog-image {
+  display: block;
+  width: 100%;
+  max-width: 230px;
+  height: auto;
+  object-fit: contain;
+}
+
+/*game information*/
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.game-info h2,
+.keyboard-section h2,
+.game-instructions h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.hint {
+  background-color: #FFF9F0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.word-display {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+.game-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  width: 100%;
+}
+.game-status #lives-remaining {
+  background-color: #F8D7E3;
+  border-radius: 30px;
+  padding: 12px 20px;
+  font-size: 0.89rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.game-status #lives-count {
+  font-weight: 700;
+}
+.game-status #result-message {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.game-status #play-again-button {
+  background-color: #F4AFC5;
+  color: #1D1D1F;
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-color: #E68EAD;
+  border-radius: 12px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.game-status #play-again-button:hover {
+  background-color: #E68EAD;
+}
+.game-status #play-again-button:focus-visible {
+  outline: 3px solid #1D1D1F;
+  outline-offset: 2px;
+}
+
+#game-result[hidden] {
+  display: none;
+}
+
+/*keyboard*/
+.keyboard-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 4px;
+  width: 100%;
+  max-width: 650px;
+}
+.keyboard button {
+  background-color: #8B8B93;
+  color: #1D1D1F;
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  min-width: 0;
+  min-height: 36px;
+  padding: 0;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+.keyboard button:hover:not(:disabled) {
+  background-color: #F4AFC5;
+  transform: translateY(-2px);
+}
+.keyboard button:focus-visible {
+  outline: 3px solid #E68EAD;
+  outline-offset: 2px;
+}
+.keyboard button:disabled {
+  background-color: #F4AFC5;
+  color: #1D1D1F;
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/*game instructions*/
+.game-instructions {
+  width: 100%;
+  border-top: 1px solid #E8E8EA;
+  padding-top: 20px;
+  text-align: center;
+}
+.game-instructions h2 {
+  margin-bottom: 10px;
+}
+.game-instructions p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/*site footer*/
+.site-footer {
+  text-align: center;
+  padding: 25px 20px;
+  margin-top: 15px;
+}
+.site-footer p {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+/*media qurey - table >600px*/
+@media (min-width: 600px) {
+  .page-header {
+    padding: 35px 20px 25px;
+  }
+  .page-header p {
+    font-size: 1rem;
+  }
+  main {
+    padding: 0 20px;
+  }
+  .game-container {
+    padding: 24px 18px;
+    gap: 20px;
+    border-radius: 24px;
+  }
+  .visual-section #dog-image {
+    max-width: 250px;
+  }
+  .game-info h2,
+  .keyboard-section h2,
+  .game-instructions h2 {
+    font-size: 1.25rem;
+  }
+  .hint {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+  .word-display {
+    font-size: 1.85rem;
+    letter-spacing: 6px;
+  }
+  .keyboard {
+    gap: 6px;
+  }
+  .keyboard button {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+  .game-instructions p {
+    font-size: 0.9rem;
+  }
+  .game-status #lives-remaining {
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+/*media query - desktop >900px */
+@media (min-width: 900px) {
+  .game-container {
+    padding: 30px;
+    gap: 24px;
+  }
+  .visual-section #dog-image {
+    max-width: 375px;
+  }
+  .word-display {
+    font-size: 2.25rem;
+    letter-spacing: 7px;
+  }
+  .keyboard {
+    gap: 8px;
+  }
+  .keyboard button {
+    min-height: 48px;
+    font-size: 1rem;
+  }
+  .game-status #lives-remaining {
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
